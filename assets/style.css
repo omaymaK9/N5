@@ -346,8 +346,4 @@ footer div {
 
 }
 
-@media all and (max-width: 1250px) {
-	#contact > article {
-		flex: 2;
-	}
 }
