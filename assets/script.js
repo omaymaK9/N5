@@ -16,22 +16,25 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
+
+
+/***ici on recupere les elements,on  va mettre dans des constante les elements qu'on a envie d'animer ****/
 const banner = document.getElementById('#banner');
 const arrowleft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
 const bannerImage = document.querySelector('#banner > img');
 const bannerText = document.querySelector('#banner > p');
 
-const numberOfSlide = slides.length;
-let i = 0;
+const numberOfSlide = slides.length; /****ici le nombre de slides qu'on a le nombre de d'image donc 4 */
+let i = 0; /**** ici notre compteur  */
 
 /* Create bullet (dot) */ 
 function showDots() {
 	const dots = document.querySelector('.dots');
-	for (let j = 0; j < numberOfSlide; j++) {
-	const dot = document.createElement('span');
-	dot.id='span' + j;
-    dot.addEventListener('click', function(event) {
+	for (let j = 0; j < numberOfSlide; j++) { /** affiche 0 1 2 3 */
+        const dot = document.createElement('span'); /***recuperation de lelement du dom  */
+        dot.id='span' + j;
+        dot.addEventListener('click', function(event) {
       i = Number(event.target.id.replace('span', ''));
       showSlide();
 	});
@@ -50,8 +53,8 @@ console.log(showDots);
 	const dot = document.getElementsByClassName('dot');
 	for (let i = 0; i < dot.length; i++) {
 		dot[i].classList.remove('dot_selected');
-	}
-	dot[i].classList.add('dot_selected');
+	} /*****ca veut dire que tous nos point ne seront pas tous actif***/
+	 dot[i].classList.add('dot_selected');
  }
 /* Lien des  tagline */
 function showSlide() {
@@ -59,13 +62,15 @@ function showSlide() {
 	bannerText.innerHTML = slides[i].tagLine;
 	selected();
 }
+
+/***on va generer l'évenement  click  et on appelle la fonction showslide ***/
 showSlide();
 /* function to move arrowleft */
 arrowleft.addEventListener("click", function () {
 	clearTimeout(timeoutId);
 	if (i == 0) {
-		i = numberOfSlide - 1;
-	}
+		i = numberOfSlide - 1; 	
+	}/** ca doit rembobiner a la fin de la transition **/
 	else {
 		i--;
 	}showSlide();
